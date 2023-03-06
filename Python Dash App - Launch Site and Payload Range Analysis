@@ -73,8 +73,10 @@ def get_pie_chart(entered_site):
 @app.callback(Output(component_id='success-payload-scatter-chart',component_property='figure'),
                 [Input(component_id='site-dropdown',component_property='value'),
                 Input(component_id='payload-slider',component_property='value')])
+#Function definition needs to contain all inputs, in the same order as they've been mentioned in the callback function                
 def scatter(entered_site,payload):
     filtered_df = spacex_df[spacex_df['Payload Mass (kg)'].between(payload[0],payload[1])]
+    #The slider we introduced will have two values, min_payload, max_payload. payload[0] and payload[1] will call 'em
     if entered_site=='ALL':
     #Scatter plot if no site is selected
         fig=px.scatter(filtered_df,x='Payload Mass (kg)',y='class',color='Booster Version Category',title='Success count on Payload mass for all sites')
